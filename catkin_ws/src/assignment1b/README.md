@@ -3,7 +3,7 @@ what each code is, how to run it and a screenshot of trajectory
 <ins>circle.py</ins>:
 
 What it is:
-*code to make turtlebot move in a circle of any size.
+Code to make turtlebot move in a circle of any size.
 
 Instruction to launch: 
 1. Open a Terminal window and run roscore.
@@ -18,7 +18,7 @@ Trajectory:
 <ins>square_openloop</ins>:
 
 What it is:
-*Given a linear speed of 0.2 units/s and angular speed of 0.2 rad/s, make the turtlebot move in a 2x2 unit circle.
+Given a linear speed of 0.2 units/s and angular speed of 0.2 rad/s, make the turtlebot move in a 2x2 unit circle.
 
 Instruction to launch: 
 1. Open a Terminal window and run roscore.
