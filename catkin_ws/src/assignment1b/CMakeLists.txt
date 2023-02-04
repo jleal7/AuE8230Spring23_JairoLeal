@@ -118,15 +118,10 @@ catkin_install_python(PROGRAMS scripts/gotogoal.py
 catkin_install_python(PROGRAMS scripts/circle.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
-catkin_install_python(PROGRAMS scripts/test.py
+catkin_install_python(PROGRAMS scripts/square_openloop.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
-catkin_install_python(PROGRAMS scripts/test2.py
-  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
-)
-catkin_install_python(PROGRAMS scripts/test_launcher.py
-  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
-)
+
 
 ###########
 ## Build ##
