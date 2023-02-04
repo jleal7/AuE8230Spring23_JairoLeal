@@ -68,3 +68,15 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/assignment1b" TYPE PROGRAM FILES "/home/jairo/Desktop/AuE8230Spring23_JairoLeal/catkin_ws/build/assignment1b/catkin_generated/installspace/square_openloop.py")
 endif()
 
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/assignment1b" TYPE PROGRAM FILES "/home/jairo/Desktop/AuE8230Spring23_JairoLeal/catkin_ws/build/assignment1b/catkin_generated/installspace/square_closedloop.py")
+endif()
+
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/assignment1b" TYPE PROGRAM FILES "/home/jairo/Desktop/AuE8230Spring23_JairoLeal/catkin_ws/build/assignment1b/catkin_generated/installspace/test.py")
+endif()
+
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/assignment1b" TYPE PROGRAM FILES "/home/jairo/Desktop/AuE8230Spring23_JairoLeal/catkin_ws/build/assignment1b/catkin_generated/installspace/test2.py")
+endif()
+

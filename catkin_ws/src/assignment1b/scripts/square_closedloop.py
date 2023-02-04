@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 
 import rospy
-from geometry_msgs.msg import Twist
-from turtlesim.msg import Pose
+from geometry_msgs.msg import Twist #pre-defined message type
+from turtlesim.msg import Pose #pre-defined message type
 from math import pow, atan2, sqrt
+import roslaunch
 
 
 class TurtleBot:
-
     def __init__(self):
         # Creates a node with name 'turtlebot_controller' and make sure it is a
         # unique node (using anonymous=True).
@@ -44,26 +44,27 @@ class TurtleBot:
     def steering_angle(self, goal_pose):
         """See video: https://www.youtube.com/watch?v=Qh15Nol5htM."""
         return atan2(goal_pose.y - self.pose.y, goal_pose.x - self.pose.x)
+        #return atan((goal_pose.x - self.pose.x)/(goal_pose.y - self.pose.y))
 
     def angular_vel(self, goal_pose, constant=6):
         """See video: https://www.youtube.com/watch?v=Qh15Nol5htM."""
         return constant * (self.steering_angle(goal_pose) - self.pose.theta)
-
-    def move2goal(self):
+        
+    #def setDesiredOrientation(self):
+    	#self.pose = Pose() #get the current x,y,theta info
+    	#print("Theta = %.2f" % self.pose.theta)
+    	
+    def move2goal(self, x_coord, y_coord):
         """Moves the turtle to the goal."""
-        goal_pose = Pose()
+        goal_pose = Pose() #initialize goal_pose to Pose mssg type
 
-        # Get the input from the user.
-        #goal_pose.x = float(input("Set your x goal: "))
-        goal_pose.x = rospy.get_param('~x')
-        #goal_pose.y = float(input("Set your y goal: "))
-        goal_pose.y = rospy.get_param('~y')
+        goal_pose.x = x_coord
+        goal_pose.y = y_coord
 
         # Please, insert a number slightly greater than 0 (e.g. 0.01).
-        #distance_tolerance = float(input("Set your tolerance: "))
-        distance_tolerance = rospy.get_param('~tol')
+        distance_tolerance = 0.1
 
-        vel_msg = Twist()
+        vel_msg = Twist() #initialize velocity message to Twist mssg type
 
         while self.euclidean_distance(goal_pose) > distance_tolerance:
 
@@ -90,13 +91,32 @@ class TurtleBot:
         vel_msg.linear.x = 0
         vel_msg.angular.z = 0
         self.velocity_publisher.publish(vel_msg)
-
+        
+        print("Reached goal: (%d,%d)"% (x_coord,y_coord))
+        
+        #self.setDesiredOrientation()
+        
+        return #exit function once we have reached coordinates so we can continue to next ones
+        
         # If we press control + C, the node will stop.
-        rospy.spin()
+        #rospy.spin()
 
 if __name__ == '__main__':
     try:
-        x = TurtleBot()
-        x.move2goal()
-    except rospy.ROSInterruptException:
+    	#use roslaunch python api to launch turtlesim from python script
+    	node1 = roslaunch.core.Node("turtlesim","turtlesim_node")
+    	launch = roslaunch.scriptapi.ROSLaunch()
+    	launch.start()
+    	process = launch.launch(node1)
+    	
+    	x = TurtleBot() #creates a turtlebotcontroller node which publishes to /turtle1/cmd_vel and subscribes (reads from) to /turtle1/pose
+    	
+    	
+    	x.move2goal(5,5) #runs our move2goal function defined above
+    	x.move2goal(8,5)
+    	x.move2goal(8,8)
+    	x.move2goal(5,8)
+    	x.move2goal(5,5)
+     
+    except rospy.ROSInterruptException: #if we close or do ^C to end script
         pass

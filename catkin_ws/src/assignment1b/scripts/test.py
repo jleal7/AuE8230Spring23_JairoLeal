@@ -2,7 +2,8 @@
 
 import roslaunch
 import rospy
-from geometry_msgs.msg import Twist
+from geometry_msgs.msg import Twist #message type we need to write to cmd_vel
+from turtlesim.msg import Pose #message type recieved from pose topic
 
 def straight():
 
@@ -40,22 +41,31 @@ def turn():
 		rate.sleep()
 		counter += 1
 
+def callback(data):
+
+
 if __name__ == '__main__':
 	try:
+		#launch turtlesim
 		node1 = roslaunch.core.Node("turtlesim","turtlesim_node")
 		launch = roslaunch.scriptapi.ROSLaunch()
 		launch.start()
 		process = launch.launch(node1)
 
+		#we need to subscribe to /turtle1/pose topic to find out where our turtlebot is
+		rospy.init_node('getPose',anonymous=True)
+		#rospy.init_node() creates a node but a node can be a subscriber or a publisher. Now we need to tell ROS whether the node we just created is a subscriber or a publisher
+		rospy.Subscriber('/turtle1/pose',Pose,callback) #args are: topic to listen to, type of message and callback function (everytime a message comes in this function will run)
+		rospy.spin() #keep listening until we shut it down
+		
+		#we need to publish (write) to /turtle1/cmd_vel to tell our robot to move (Twist mssg)
 		publisher = rospy.Publisher('/turtle1/cmd_vel',Twist,queue_size=10)
-		rospy.init_node('turtlesim_controller',anonymous=True)
+		rospy.init_node('setVelocities',anonymous=True)
+		
+		
+		
 		vel = Twist()
 		rate = rospy.Rate(100)
-		
-		#keep making squares forever
-		while True:
-			straight()
-			turn()
 		
 	except rospy.ROSInterruptException:
 		pass

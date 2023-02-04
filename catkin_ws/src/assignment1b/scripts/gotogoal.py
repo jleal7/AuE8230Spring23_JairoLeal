@@ -1,16 +1,15 @@
 #!/usr/bin/env python3
 
 import rospy
-from geometry_msgs.msg import Twist #pre-defined message type
-from turtlesim.msg import Pose #pre-defined message type
+from geometry_msgs.msg import Twist
+from turtlesim.msg import Pose
 from math import pow, atan2, sqrt
 
 
 class TurtleBot:
 
     def __init__(self):
-        # Creates a node with name 'turtlebot_controller' and make sure it is a
-        # unique node (using anonymous=True).
+        # Creates a node with name 'turtlebot_controller' which is publisher and subscriber
         rospy.init_node('turtlebot_controller', anonymous=True)
 
         # Publisher which will publish to the topic '/turtle1/cmd_vel'.
@@ -22,7 +21,7 @@ class TurtleBot:
         self.pose_subscriber = rospy.Subscriber('/turtle1/pose',
                                                 Pose, self.update_pose)
 
-        self.pose = Pose()
+        self.pose = Pose() #make what ever object we initialize as a TurtleBot class's pose's value be a Pose type
         self.rate = rospy.Rate(10)
 
     def update_pose(self, data):
@@ -92,13 +91,12 @@ class TurtleBot:
         self.velocity_publisher.publish(vel_msg)
 
         # If we press control + C, the node will stop.
-        rospy.spin()
+        rospy.spin()#puts it in an infitie wait loop
 
+#OUTSIDE OF CLASS (TURTLEBOT)
 if __name__ == '__main__':
     try:
-    #why x. (x is not our class name it is TurtleBot)?
-        x = TurtleBot() #opens the turtlesim window?
-        x.move2goal() #runs our move2goal function defined above
-     
-    except rospy.ROSInterruptException: #if we close or do ^C to end script
+        x = TurtleBot() #initialize x as a TurtleBot object which has attributes (pose, rate, velocity_publisher, pose_subscriber) and functions (euclidean_distance, linear_vel, steering_angle, angular_vel and move2goal)
+        x.move2goal()
+    except rospy.ROSInterruptException:
         pass

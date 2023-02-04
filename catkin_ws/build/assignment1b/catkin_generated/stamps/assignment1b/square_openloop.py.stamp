@@ -24,7 +24,7 @@ def straight():
 		counter += 1
 		
 def turn():
-	#we want to make a 90 deg (pi/2 = 1.57079632679 rad) turn. We are gonna turn at 0.2 rad/s so we need to turn for 7.8539816 s. Our loops are 0.1s long so the best we can do is turn for 785 loops (truncate)
+	#we want to make a 90 deg (pi/2 = 1.57079632679 rad) turn. We are gonna turn at 0.2 rad/s so we need to turn for 7.8539816 s. Our loops are 0.01s long so the best we can do is turn for 785 loops (truncate)
 	
 	counter = 0
 	while not rospy.is_shutdown():
