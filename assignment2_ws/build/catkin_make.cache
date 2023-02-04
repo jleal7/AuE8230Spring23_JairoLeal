@@ -1,2 +1,0 @@
-
--DCATKIN_DEVEL_PREFIX=/home/jairo/Desktop/AuE8230Spring23_JairoLeal/assignment2_ws/devel -DCMAKE_INSTALL_PREFIX=/home/jairo/Desktop/AuE8230Spring23_JairoLeal/assignment2_ws/install -G Unix Makefiles
