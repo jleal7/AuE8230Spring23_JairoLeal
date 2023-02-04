@@ -1,0 +1,8 @@
+prefix=/home/jairo/Desktop/AuE8230Spring23_JairoLeal/catkin_ws/devel
+
+Name: assignment1b
+Description: Description of assignment1b
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

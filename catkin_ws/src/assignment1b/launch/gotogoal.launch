@@ -1,0 +1,18 @@
+<launch>
+
+    <arg name="x" default = "1"/>
+    <arg name="y" default = "1"/>
+    <arg name="tol" default = "0.1"/>
+    
+    <!-- Open turtlesim -->
+    <node pkg="turtlesim" type="turtlesim_node" name="turtlesim_node"/>
+    
+    <!-- Open assignment1b pkg and run gotogoal.py script -->
+    <node pkg="assignment1b" type="gotogoal.py" name="gotogoal">
+    
+    <!-- create variables that gotogoal.py will be looking for -->
+        <param name="x" value="$(arg x)"/>
+        <param name="y" value="$(arg y)"/>
+        <param name="tol" value="$(arg tol)"/>
+    </node>
+</launch>

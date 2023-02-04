@@ -131,6 +131,7 @@ endif()
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   include("/home/jairo/Desktop/AuE8230Spring23_JairoLeal/catkin_ws/build/gtest/cmake_install.cmake")
+  include("/home/jairo/Desktop/AuE8230Spring23_JairoLeal/catkin_ws/build/assignment1b/cmake_install.cmake")
 
 endif()
 
