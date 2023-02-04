@@ -1,6 +1,4 @@
-Here I will explain what each code is and how to run it
-
-Also I will provide a GIF screenshot of the trajectory produced by each code
+what each code is, how to run it and a screenshot of trajectory
 
 circle.py:
 
